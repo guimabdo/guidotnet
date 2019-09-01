@@ -1,5 +1,5 @@
 #????
-- task: Npm@1
+- task: NpmInstall
   inputs:
     command: 'install'
     workingDir: './'
