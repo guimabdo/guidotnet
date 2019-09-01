@@ -5,7 +5,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $v = ($env:Build_BuildNumber)
+      $v = ($env:BUILD_BUILDNUMBER)
       $v = $v.replace('refs_', '')
       $v = $v.replace('heads_', '')
       $v = $v.replace('releases_','')
