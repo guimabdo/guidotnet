@@ -8,7 +8,12 @@ steps:
       $v = $v.replace('refs_', '')
       $v = $v.replace('heads_', '')
       $v = $v.replace('releases_','')
-      echo 'version is:' + $v
+      echo "##vso[task.setvariable variable=version;isOutput=true] $v"
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo $(version)
 - task: Npm@1
   inputs:
     command: 'install'
