@@ -1,4 +1,6 @@
 name: $(Build.SourceBranch)$(rev:.r)
+trigger:
+  - releases/*
 steps:
 - task: PowerShell@2
   inputs:
