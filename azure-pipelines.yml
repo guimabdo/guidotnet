@@ -1,5 +1,14 @@
-#????
+variables:
+  Build_BuildNumber: $(Build.SourceBranch)$(rev:.r)
 steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $v = ($env:Build_BuildNumber)
+      $v = $v.replace('refs_', '')
+      $v = $v.replace('heads_', '')
+      $v = $v.replace('releases_','')
 - task: Npm@1
   inputs:
     command: 'install'
