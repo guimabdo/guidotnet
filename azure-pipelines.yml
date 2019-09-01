@@ -1,5 +1,5 @@
 variables:
-  Build_BuildNumber: $(Build.SourceBranch)$(rev:.r)
+  BUILD_BUILDNUMBER: $(Build.SourceBranch)$(rev:.r)
 steps:
 - task: PowerShell@2
   inputs:
