@@ -1,0 +1,25 @@
+{
+  "name": "@guimabdo/guidotnet",
+  "version": "0.0.0",
+  "author": {
+    "name": "guimabdo"
+  },
+  "description": "dotnet cli helpers",
+  "homepage": "https://github.com/guimabdo/guidotnet/",
+  "license": "MIT",
+  "bin": {
+    "guidotnet": "./index.js"
+  },
+  "keywords": [
+    "dotnet",
+    "cli"
+  ],
+  "bugs": "https://github.com/guimabdo/guidotnet/issues",
+  "dependencies": {
+    "commander": "3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guimabdo/guidotnet.git"
+  }
+}
