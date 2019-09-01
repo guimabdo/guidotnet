@@ -9,6 +9,7 @@ steps:
       $v = $v.replace('heads_', '')
       $v = $v.replace('releases_','')
       echo "##vso[task.setvariable variable=sauce;isOutput=true] $v"
+      echo 'version has been set $v'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
