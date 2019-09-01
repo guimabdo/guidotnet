@@ -8,6 +8,7 @@ steps:
       $v = $v.replace('refs_', '')
       $v = $v.replace('heads_', '')
       $v = $v.replace('releases_','')
+      echo 'version is:' + $v
 - task: Npm@1
   inputs:
     command: 'install'
