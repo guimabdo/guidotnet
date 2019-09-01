@@ -10,14 +10,18 @@ steps:
       $v = $v.replace('refs_', '')
       $v = $v.replace('heads_', '')
       $v = $v.replace('releases_','')
-      echo "##vso[task.setvariable variable=sauce;isOutput=true]$v"
+      echo "##vso[task.setvariable variable=version;isOutput=true]$v"
       echo 'version has been set $v'
   name: 'SetVersionStep'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      Write-Host "$(SetVersionStep.sauce)"
+      Write-Host "$(SetVersionStep.version)"
 - task: Npm@1
   inputs:
     command: 'install'
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: version $(SetVersionStep.version) -m 'v$(SetVersionStep.version)'
