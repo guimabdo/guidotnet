@@ -6,6 +6,7 @@ let program = require('commander');
 
 
 program
+    .version('0.0.0')
     .command('pack-debug')
     .option('-o, --output <output>', 'The output path')
     //.arguments('<file>')
