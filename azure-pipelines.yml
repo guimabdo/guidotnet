@@ -14,7 +14,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo $(env:VERSION)
+      echo "$(env:VERSION)"
 - task: Npm@1
   inputs:
     command: 'install'
