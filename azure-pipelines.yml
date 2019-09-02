@@ -19,16 +19,18 @@ steps:
       echo "##vso[task.setvariable variable=version;isOutput=true]$v"
       echo 'version has been set $v'
   name: 'SetVersionStep'
+  displayName: 'Determinando versão'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      Write-Host "$(SetVersionStep.version)"
+      (Get-Content ./package.json) | ForEach-Object { $_ -replace "0.0.0", "$(SetVersionStep.version)" } | Set-Content ./package.json
+      (Get-Content ./index.js) | ForEach-Object { $_ -replace "0.0.0", "$(SetVersionStep.version)" } | Set-Content ./index.js
+  displayName: 'Alterando versão no package.json e no index.js'
 - task: Npm@1
   inputs:
     command: 'install'
 - task: Npm@1
   inputs:
-    command: custom
+    command: publish
     customEndpoint: 'npm - guimabdo'
-    customCommand: version $(SetVersionStep.version) -m 'v$(SetVersionStep.version)'
