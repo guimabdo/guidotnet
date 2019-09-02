@@ -36,6 +36,6 @@ steps:
     customCommand: 'pack'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.tar.gz'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.tgz'
     ArtifactName: 'drop'
     publishLocation: 'Container'
