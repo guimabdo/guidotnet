@@ -13,6 +13,7 @@ steps:
       $v = $v.replace('heads_', '')
       $v = $v.replace('releases_','')
       #se o resultado não está no padrão X.X.X, adiciono 0.0.0 a frente
+      echo $v
       if(!($s -match '^\d+\.\d+\.\d+.*')){
         $v = '0.0.0-' + $v
       }
