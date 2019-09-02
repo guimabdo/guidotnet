@@ -6,32 +6,34 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      #Obtem a build number, que contÈm o nome da branch
+      #Obtem a build number, que cont√©m o nome da branch
       $v = ($env:BUILD_BUILDNUMBER)
-      #substitui o que n„o interessa
+      #substitui o que n√£o interessa
       $v = $v.replace('refs_', '')
       $v = $v.replace('heads_', '')
       $v = $v.replace('releases_','')
-      #se o resultado n„o est· no padr„o X.X.X, adiciono 0.0.0 a frente
+      #se o resultado n√£o est√° no padr√£o X.X.X, adiciono 0.0.0 a frente
       if(!($s -match '^\d+\.\d+\.\d+')){
         $v = '0.0.0-' + $v
       }
       echo "##vso[task.setvariable variable=version;isOutput=true]$v"
       echo 'version has been set $v'
   name: 'SetVersionStep'
-  displayName: 'Determinando vers„o'
+  displayName: 'Determinando vers√£o'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
       (Get-Content ./package.json) | ForEach-Object { $_ -replace "0.0.0", "$(SetVersionStep.version)" } | Set-Content ./package.json
       (Get-Content ./index.js) | ForEach-Object { $_ -replace "0.0.0", "$(SetVersionStep.version)" } | Set-Content ./index.js
-  displayName: 'Alterando vers„o no package.json e no index.js'
+  displayName: 'Alterando vers√£o no package.json e no index.js'
 - task: Npm@1
   inputs:
     command: 'install'
 - task: Npm@1
   inputs:
     command: 'custom'
-    customCommand: 'publish --access public'
-    publishEndpoint: 'npm - guimabdo'
+    customCommand: 'pack'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'guimabdo-guidotnet-$(SetVersionStep.version).tgz'
