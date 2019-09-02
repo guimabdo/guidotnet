@@ -27,6 +27,10 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
+- task: npmAuthenticate@0
+  inputs:
+    workingFile: 
+    customEndpoint: 'npm - guimabdo'
 - task: Npm@1
   inputs:
     command: custom
