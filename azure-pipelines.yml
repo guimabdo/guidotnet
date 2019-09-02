@@ -36,6 +36,4 @@ steps:
     customCommand: 'pack'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.tgz'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    PathtoPublish: 'guimabdo-guidotnet-$(SetVersionStep.version).tgz'
