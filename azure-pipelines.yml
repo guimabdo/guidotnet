@@ -34,4 +34,5 @@ steps:
   inputs:
     command: 'custom'
     customCommand: 'publish --access public'
+    customEndpoint: 'npm - guimabdo'
     publishEndpoint: 'npm - guimabdo'
