@@ -11,3 +11,8 @@ CLI helpers for dotnet
 ```
  guidotnet pack-debug [-o <folder>]
 ```
+
+### Create an obfuscated nuget package (with obfuscar)
+```
+ guidotnet pack-obfuscar -v 1.0.1 -c Release -o C:/MyFolder
+```
